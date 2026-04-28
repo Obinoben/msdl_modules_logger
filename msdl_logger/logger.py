@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import os
 
 def get_logger(name="mylogger", debug=False, path=None):
     """
@@ -27,6 +28,7 @@ def get_logger(name="mylogger", debug=False, path=None):
 
         # Gestionnaire fichier (si un chemin est fourni)
         if path:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
             fh = logging.FileHandler(path, mode='a', encoding='utf-8')
             fh.setLevel(level)
             fh.setFormatter(formatter)
